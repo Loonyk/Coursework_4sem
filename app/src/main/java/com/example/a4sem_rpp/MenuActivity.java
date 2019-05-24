@@ -1,12 +1,12 @@
 package com.example.a4sem_rpp;
 
-import android.content.ContentResolver;
-import android.content.ContentValues;
-import android.net.Uri;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.util.Log;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -18,18 +18,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 
-import com.example.a4sem_rpp.db.DBNotesConstract;
+import com.example.a4sem_rpp.AsyncTask.AsyncTaskNote;
+import com.example.a4sem_rpp.modelDB.Notes;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-
-        /** для проверки работы БД*/
-        insert();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -48,26 +50,8 @@ public class MenuActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
     }
-
-    /** для проверки работы БД*/
-    private void insert(){
-        /**методы, аналогичные созданным нами в ContentProvider */
-        ContentResolver contentResolver = getContentResolver();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(DBNotesConstract.Notes.COLUMN_TITLE, "Заголовок заметки");
-        contentValues.put(DBNotesConstract.Notes.COLUMN_NOTE, "Текст заметки");
-        contentValues.put(DBNotesConstract.Notes.COLUMN_CREATED_TS, System.currentTimeMillis());
-        contentValues.put(DBNotesConstract.Notes.COLUMN_UPDATED_TS, System.currentTimeMillis());
-
-        //производим вставку
-        Uri uri = contentResolver.insert(DBNotesConstract.Notes.URI, contentValues);
-        //Выведем его в лог
-        Log.i("Test", "URI: " + uri);
-    }
-
-    /** конец проверки БД*/
-
 
 
     @Override
@@ -105,6 +89,9 @@ public class MenuActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
@@ -115,15 +102,50 @@ public class MenuActivity extends AppCompatActivity
         } else if (id == R.id.sorting) {
 
         } else if (id == R.id.notes) {
+            //fragmentTransaction.replace(R.id.container, noteFragment);
+            AsyncTaskNote as = new AsyncTaskNote();
+            as.execute(this);
+
 
         } else if (id == R.id.searching) {
 
         }else if (id == R.id.exit) {
-
-        }
+            openQuitApp();
+        } fragmentTransaction.commit();
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    /*My function*/
+    public void openNotes(List<Notes> l)
+    {
+        Intent intent = new Intent(".notes.NotesActivity");
+        intent.putExtra("list",(ArrayList)l);
+        startActivity(intent);
+    }
+
+    private void openQuitApp(){   // кнопка Выход
+        AlertDialog.Builder quitApp = new AlertDialog.Builder(MenuActivity.this);
+        quitApp.setTitle("Вы уверены, что хотите выйти?");
+        quitApp.setPositiveButton("Да", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                System.exit(0);
+            }
+        });
+        quitApp.setNegativeButton("Нет", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        quitApp.show();
+    }
+
+    public void addListenerOnMenu(MenuItem item){
+        int id = item.getItemId();
+    }
+
 }
