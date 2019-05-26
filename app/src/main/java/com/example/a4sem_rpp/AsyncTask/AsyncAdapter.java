@@ -17,10 +17,10 @@ public class AsyncAdapter extends AsyncTask<ListAdapter, Void, Void> {
         ListAdapter lAdapter = listAdapters[0];
         AppDatabase database = AppDatabase.getDatabase(lAdapter.context);
 
-        Notes nt=new Notes();
-       // nt.setNote(lAdapter.getTextEt().getText().toString());
-       // nt.setTitle(lAdapter.getTitleEt().getText().toString());
-       // List<Notes> list  = database.getNotesDao().getNotesTitleText(nt.getTitle(), nt.getNote());
+        Notes nt = lAdapter.getNotes();
+        nt.setTitle(lAdapter.getTitleEt().toString());
+        nt.setNote(lAdapter.getTextEt().toString());
+        database.getNotesDao().Update(nt);
         List<Notes> list = database.getNotesDao().getNotesId(lAdapter.current_position);
         lAdapter.load_notes(list);
 
@@ -29,3 +29,6 @@ public class AsyncAdapter extends AsyncTask<ListAdapter, Void, Void> {
 
     }
 }
+// nt.setNote(lAdapter.getTextEt().getText().toString());
+// nt.setTitle(lAdapter.getTitleEt().getText().toString());
+// List<Notes> list  = database.getNotesDao().getNotesTitleText(nt.getTitle(), nt.getNote());

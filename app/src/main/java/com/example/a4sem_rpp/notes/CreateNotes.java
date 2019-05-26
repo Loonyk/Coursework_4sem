@@ -10,7 +10,9 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
+import com.example.a4sem_rpp.AsyncTask.AsyncAdapter;
 import com.example.a4sem_rpp.AsyncTask.AsyncNoteInsert;
 import com.example.a4sem_rpp.AsyncTask.AsyncTaskNote;
 import com.example.a4sem_rpp.R;
@@ -25,7 +27,16 @@ public class CreateNotes extends AppCompatActivity {
     private TextInputEditText textEt;
     private TextInputLayout titleTil;
     private TextInputLayout textTil;
+    private String title;
+    private String text;
     private ClipData.Item button;
+    private Notes notes;
+    AsyncAdapter as;
+
+
+    public Notes getNotes() {
+        return notes;
+    }
 
     public TextInputEditText getTitleEt() {
         return titleEt;
@@ -48,12 +59,15 @@ public class CreateNotes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_notes);
 
+        notes = ((ArrayList<Notes>)getIntent().getExtras().getSerializable("list")).get(0);
+
         titleEt = findViewById(R.id.title_et);
         textEt = findViewById(R.id.text_et);
         titleTil = findViewById(R.id.title_til);
         textTil = findViewById(R.id.text_til);
 
-
+        titleEt.setText(notes.getTitle());
+        textEt.setText(notes.getNote());
 
     }
 
@@ -108,10 +122,10 @@ public class CreateNotes extends AppCompatActivity {
         }
     }
 
-    public void openNotes(List<Notes> l)
-    {
+    public void openNotes(List<Notes> l) {
         Intent intent = new Intent(".notes.NotesActivity");
         intent.putExtra("list",(ArrayList)l);
         startActivity(intent);
     }
+
 }

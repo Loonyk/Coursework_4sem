@@ -9,7 +9,12 @@
         android:roundIcon="@drawable/box"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".notes.CreateNotes"></activity>
+        <activity android:name=".products.CreateProducts"></activity>
+        <activity
+            android:name=".products.ProductsActivity"
+            android:label="@string/title_activity_products"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".notes.CreateNotes" />
         <activity
             android:name=".MenuActivity"
             android:label="Меню"
@@ -37,7 +42,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

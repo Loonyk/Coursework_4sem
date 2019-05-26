@@ -2,7 +2,6 @@ package com.example.a4sem_rpp.notes;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.support.design.widget.TextInputEditText;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +9,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.example.a4sem_rpp.AsyncTask.AsyncAdapter;
-import com.example.a4sem_rpp.AsyncTask.AsyncTaskNote;
 import com.example.a4sem_rpp.R;
 import com.example.a4sem_rpp.modelDB.Notes;
 
@@ -25,10 +22,10 @@ public class ListAdapter extends BaseAdapter {
     public LayoutInflater inflater;
     public TextInputEditText titleEt;
     public TextInputEditText textEt;
-
     public static int current_position = 0;
     public String titleNotes;
     public String textNotes;
+    private Notes notes;
 
 
     public TextView title;
@@ -50,6 +47,10 @@ public class ListAdapter extends BaseAdapter {
 
     public TextInputEditText getTextEt() {
         return textEt;
+    }
+
+    public Notes getNotes() {
+        return notes;
     }
 
     @Override
@@ -75,22 +76,35 @@ public class ListAdapter extends BaseAdapter {
 
         title = (TextView)view.findViewById(R.id.titleNot);
         title.setText(this.list.get(position).getTitle());
-
+//
         titleEt = (TextInputEditText)view.findViewById(R.id.title_et);
         textEt = (TextInputEditText)view.findViewById(R.id.text_et);
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //String title = titleEt.getText().toString().trim();
-                //String text = textEt.getText().toString().trim();
                 current_position = list.get(position).getId();
+                ArrayList<Notes> pos = new ArrayList<Notes>();
+                pos.add(list.get(position));
+                Intent intent = new Intent(context, CreateNotes.class);
+                intent.putExtra("list", pos);
+                context.startActivity(intent);
+//                if((titleEt.getText() != null) && (textEt.getText() != null))
+//                {
+//                    titleNotes = titleEt.getText().toString();
+//                    textNotes = textEt.getText().toString().toLowerCase().trim();
+//                    AsyncAdapter as = new AsyncAdapter();
+//                    as.execute(ListAdapter.this);
+                }
+               // String title = titleEt.getText().toString().trim();
+              //  String text = textEt.getText().toString().trim();
+
                // titleEt = title.getText(this.list.get(position).getTitle());
-                titleNotes = titleEt.getText().toString();
-                textNotes = titleEt.getText().toString().toLowerCase().trim();
-                AsyncAdapter as = new AsyncAdapter();
-                as.execute(ListAdapter.this);
-            }
+//                titleNotes = titleEt.getText().toString();
+//                textNotes = titleEt.getText().toString().toLowerCase().trim();
+//                AsyncAdapter as = new AsyncAdapter();
+//                as.execute(ListAdapter.this);
+
         });
 
 
@@ -102,6 +116,5 @@ public class ListAdapter extends BaseAdapter {
         Intent intent=new Intent(this.context,CreateNotes.class);
         intent.putExtra("list",(ArrayList)nt);
         this.context.startActivity(intent);
-
     }
 }

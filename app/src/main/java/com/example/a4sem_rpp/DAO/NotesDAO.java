@@ -3,6 +3,7 @@ package com.example.a4sem_rpp.DAO;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
 
 import com.example.a4sem_rpp.modelDB.Notes;
 
@@ -14,6 +15,8 @@ public interface NotesDAO {
     // Добавление заметок в бд
     @Insert
     void insertAll(Notes... notes);
+    @Update
+    void Update(Notes notes);
 
     // Получение всех заметок из бд
     @Query("SELECT * FROM notes")

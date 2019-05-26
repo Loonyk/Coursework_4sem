@@ -95,9 +95,9 @@ public class MenuActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.mainMenu) {
+       /* if (id == R.id.mainMenu) {
             // Handle the camera action
-        } else if (id == R.id.products) {
+        } else */ if (id == R.id.products) {
 
         } else if (id == R.id.sorting) {
 

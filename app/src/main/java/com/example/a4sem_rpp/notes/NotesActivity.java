@@ -7,8 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.a4sem_rpp.R;
@@ -41,6 +39,12 @@ public class NotesActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(NotesActivity.this, CreateNotes.class);
+                ArrayList<Notes> notes = new ArrayList<>();
+                Notes n = new Notes();
+                n.setTitle("");
+                n.setNote("");
+                notes.add(n);
+                intent.putExtra("list", notes);
                 startActivity(intent);
 
             }

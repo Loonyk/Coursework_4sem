@@ -27,4 +27,5 @@
     <string name="text_notes_item">Текст заметки</string>
     <string name="title_item">Заголовок</string>
     <string name="title_save">title_save</string>
+    <string name="title_activity_products">ProductsActivity</string>
 </resources>
