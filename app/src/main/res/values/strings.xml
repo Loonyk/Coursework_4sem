@@ -28,4 +28,7 @@
     <string name="title_item">Заголовок</string>
     <string name="title_save">title_save</string>
     <string name="title_activity_products">ProductsActivity</string>
+    <string name="tit_prod">Название товара</string>
+    <string name="price_et">Цена</string>
+    <string name="count_et">Количество</string>
 </resources>

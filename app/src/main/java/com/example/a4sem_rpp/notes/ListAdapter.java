@@ -23,8 +23,7 @@ public class ListAdapter extends BaseAdapter {
     public TextInputEditText titleEt;
     public TextInputEditText textEt;
     public static int current_position = 0;
-    public String titleNotes;
-    public String textNotes;
+
     private Notes notes;
 
 
@@ -53,6 +52,7 @@ public class ListAdapter extends BaseAdapter {
         return notes;
     }
 
+    /**!!!!!!!!!!!!*/
     @Override
     public int getCount() {
         return list.size();
@@ -76,7 +76,7 @@ public class ListAdapter extends BaseAdapter {
 
         title = (TextView)view.findViewById(R.id.titleNot);
         title.setText(this.list.get(position).getTitle());
-//
+
         titleEt = (TextInputEditText)view.findViewById(R.id.title_et);
         textEt = (TextInputEditText)view.findViewById(R.id.text_et);
 

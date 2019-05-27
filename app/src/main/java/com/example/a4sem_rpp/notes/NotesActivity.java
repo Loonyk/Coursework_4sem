@@ -46,6 +46,7 @@ public class NotesActivity extends AppCompatActivity {
                 notes.add(n);
                 intent.putExtra("list", notes);
                 startActivity(intent);
+                //finish();
 
             }
         });

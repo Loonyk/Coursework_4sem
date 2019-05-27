@@ -20,12 +20,16 @@ import android.view.Menu;
 
 import com.example.a4sem_rpp.AsyncTask.AsyncTaskNote;
 import com.example.a4sem_rpp.modelDB.Notes;
+import com.example.a4sem_rpp.products.CreateProducts;
+import com.example.a4sem_rpp.products.ProductsFragmentList;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    ProductsFragmentList prodFrag;
 
 
     @Override
@@ -35,14 +39,20 @@ public class MenuActivity extends AppCompatActivity
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
+
+
+//        FloatingActionButton fab = findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
+
+
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -50,6 +60,8 @@ public class MenuActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
+        prodFrag = new ProductsFragmentList();
 
     }
 
@@ -90,14 +102,24 @@ public class MenuActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
 
+        /** Для работы с фрагментами*/
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
 
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-       /* if (id == R.id.mainMenu) {
-            // Handle the camera action
-        } else */ if (id == R.id.products) {
+        if (id == R.id.products) {
+            fragmentTransaction.replace(R.id.container, prodFrag);
+            FloatingActionButton fab = findViewById(R.id.fab);
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(MenuActivity.this, CreateProducts.class);
+                    startActivity(intent);
+                }
+            });
+
+
 
         } else if (id == R.id.sorting) {
 
@@ -126,6 +148,10 @@ public class MenuActivity extends AppCompatActivity
         startActivity(intent);
     }
 
+    public void openProducts(){
+
+    }
+
     private void openQuitApp(){   // кнопка Выход
         AlertDialog.Builder quitApp = new AlertDialog.Builder(MenuActivity.this);
         quitApp.setTitle("Вы уверены, что хотите выйти?");
@@ -144,8 +170,8 @@ public class MenuActivity extends AppCompatActivity
         quitApp.show();
     }
 
-    public void addListenerOnMenu(MenuItem item){
-        int id = item.getItemId();
-    }
+//    public void addListenerOnMenu(MenuItem item){
+//        int id = item.getItemId();
+//    }
 
 }

@@ -17,7 +17,7 @@
         <activity android:name=".notes.CreateNotes" />
         <activity
             android:name=".MenuActivity"
-            android:label="Меню"
+            android:label="МОЙ СКЛАД"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name=".MenuActivity" />

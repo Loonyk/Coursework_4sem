@@ -3,8 +3,10 @@ package com.example.a4sem_rpp.modelDB;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity
-public class Products {
+public class Products implements Serializable {
     @PrimaryKey(autoGenerate = true)int id;
     String title_pr;
     int price;

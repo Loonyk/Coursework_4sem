@@ -2,9 +2,11 @@ package com.example.a4sem_rpp.notes;
 
 import android.content.ClipData;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -15,6 +17,7 @@ import android.view.View;
 import com.example.a4sem_rpp.AsyncTask.AsyncAdapter;
 import com.example.a4sem_rpp.AsyncTask.AsyncNoteInsert;
 import com.example.a4sem_rpp.AsyncTask.AsyncTaskNote;
+import com.example.a4sem_rpp.MenuActivity;
 import com.example.a4sem_rpp.R;
 import com.example.a4sem_rpp.modelDB.Notes;
 
@@ -115,6 +118,9 @@ public class CreateNotes extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.action_save:
                 saveNote();
+                Intent intent = new Intent(this, MenuActivity.class);
+                startActivity(intent);
+                finish();
                 return true;
 
                 default:
@@ -126,6 +132,32 @@ public class CreateNotes extends AppCompatActivity {
         Intent intent = new Intent(".notes.NotesActivity");
         intent.putExtra("list",(ArrayList)l);
         startActivity(intent);
+    }
+
+//    private void openQuitApp(){
+//        AlertDialog.Builder quitApp = new AlertDialog.Builder(CreateNotes.this);
+//        quitApp.setTitle("Вы уверены, что хотите выйти?");
+//        quitApp.setPositiveButton("Да", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                System.exit(0);
+//            }
+//        });
+//        quitApp.setNegativeButton("Нет", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                dialog.cancel();
+//            }
+//        });
+//        quitApp.show();
+//    }
+
+    @Override
+    //переопределение метода нажатия на кнопку Назад
+    public void onBackPressed(){
+        Intent intent = new Intent(this, MenuActivity.class);
+        startActivity(intent);
+        finish();
     }
 
 }
