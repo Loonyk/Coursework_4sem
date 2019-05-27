@@ -1,22 +1,17 @@
 package com.example.a4sem_rpp.notes;
 
 import android.content.ClipData;
-import android.content.ContentValues;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.example.a4sem_rpp.AsyncTask.AsyncAdapter;
 import com.example.a4sem_rpp.AsyncTask.AsyncNoteInsert;
-import com.example.a4sem_rpp.AsyncTask.AsyncTaskNote;
 import com.example.a4sem_rpp.MenuActivity;
 import com.example.a4sem_rpp.R;
 import com.example.a4sem_rpp.modelDB.Notes;
@@ -107,7 +102,7 @@ public class CreateNotes extends AppCompatActivity {
         }
 
         if (isCorrect){
-            //код вставки заметки в БД + завершение работы активити и вывод списка
+            /**код вставки заметки в БД + завершение работы активити и вывод списка*/
             AsyncNoteInsert as= new AsyncNoteInsert();
             as.execute(this);
         }

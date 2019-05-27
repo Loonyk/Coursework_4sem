@@ -9,8 +9,8 @@ import java.io.Serializable;
 public class Products implements Serializable {
     @PrimaryKey(autoGenerate = true)int id;
     String title_pr;
-    int price;
-    int count;
+    String price;
+    String count;
 
     public int getId() {
         return id;
@@ -28,19 +28,35 @@ public class Products implements Serializable {
         this.title_pr = title_pr;
     }
 
-    public int getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
-    public int getCount() {
+    public String getCount() {
         return count;
     }
 
-    public void setCount(int count) {
+    public void setCount(String count) {
         this.count = count;
     }
+
+//    public int getPrice() {
+//        return price;
+//    }
+//
+//    public void setPrice(int price) {
+//        this.price = price;
+//    }
+
+//    public int getCount() {
+//        return count;
+//    }
+//
+//    public void setCount(int count) {
+//        this.count = count;
+//    }
 }

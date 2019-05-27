@@ -19,7 +19,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 
 import com.example.a4sem_rpp.AsyncTask.AsyncTaskNote;
+import com.example.a4sem_rpp.AsyncTask.AsyncTaskProd;
 import com.example.a4sem_rpp.modelDB.Notes;
+import com.example.a4sem_rpp.modelDB.Products;
 import com.example.a4sem_rpp.products.CreateProducts;
 import com.example.a4sem_rpp.products.ProductsFragmentList;
 
@@ -118,7 +120,8 @@ public class MenuActivity extends AppCompatActivity
                     startActivity(intent);
                 }
             });
-
+            AsyncTaskProd asP = new AsyncTaskProd();
+            asP.execute(this);
 
 
         } else if (id == R.id.sorting) {
@@ -141,15 +144,17 @@ public class MenuActivity extends AppCompatActivity
     }
 
     /*My function*/
-    public void openNotes(List<Notes> l)
-    {
+    public void openNotes(List<Notes> l) {
         Intent intent = new Intent(".notes.NotesActivity");
         intent.putExtra("list",(ArrayList)l);
         startActivity(intent);
     }
 
-    public void openProducts(){
-
+    /** !!!!!!!!*/
+    public void openProducts(List<Products> prod) {
+        Intent intent = new Intent(MenuActivity.this, ProductsFragmentList.class);
+        intent.putExtra("list",(ArrayList)prod);
+        startActivity(intent);
     }
 
     private void openQuitApp(){   // кнопка Выход
@@ -169,9 +174,5 @@ public class MenuActivity extends AppCompatActivity
         });
         quitApp.show();
     }
-
-//    public void addListenerOnMenu(MenuItem item){
-//        int id = item.getItemId();
-//    }
 
 }

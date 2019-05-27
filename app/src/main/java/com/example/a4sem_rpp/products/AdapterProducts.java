@@ -29,7 +29,7 @@ public class AdapterProducts extends BaseAdapter {
     public TextView title;  //вью списка товаров в котором будет отражаться название
 
     public AdapterProducts(Context context, List<Products> prodList){
-        this.context=context;
+        this.context = context;
         list = prodList;
     }
 
@@ -75,7 +75,7 @@ public class AdapterProducts extends BaseAdapter {
     public View getView(final int position, View convertView, ViewGroup parent) {
 
         inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.list_notes, parent, false);
+        View view = inflater.inflate(R.layout.list_products, parent, false);
 
         /** для отражения в списке товаров названия*/
         title = (TextView)view.findViewById(R.id.titleProd);

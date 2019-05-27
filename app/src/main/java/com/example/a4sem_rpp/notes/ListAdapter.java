@@ -31,7 +31,7 @@ public class ListAdapter extends BaseAdapter {
 
     public ListAdapter(Context context,List<Notes> l)
     {
-        this.context=context;
+        this.context = context;
         list = l;
 
     }

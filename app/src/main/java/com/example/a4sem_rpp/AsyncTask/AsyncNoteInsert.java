@@ -9,6 +9,7 @@ import com.example.a4sem_rpp.notes.CreateNotes;
 
 import java.util.List;
 
+/** AsyncTask для занесения в БД заметок */
 public class AsyncNoteInsert extends AsyncTask<CreateNotes,Void,Void> {
     @Override
     public Void doInBackground(CreateNotes... createNotes){

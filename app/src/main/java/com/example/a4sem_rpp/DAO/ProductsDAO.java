@@ -12,6 +12,7 @@ import java.util.List;
 
 @Dao
 public interface ProductsDAO {
+
     // Добавление заметок в бд
     @Insert
     void insertAll(Products... products);

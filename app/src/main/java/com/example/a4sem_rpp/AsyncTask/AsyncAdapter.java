@@ -2,13 +2,13 @@ package com.example.a4sem_rpp.AsyncTask;
 
 import android.os.AsyncTask;
 
-import com.example.a4sem_rpp.MenuActivity;
 import com.example.a4sem_rpp.db.AppDatabase;
 import com.example.a4sem_rpp.modelDB.Notes;
 import com.example.a4sem_rpp.notes.ListAdapter;
 
 import java.util.List;
 
+/** AsyncTask для работы с адаптером списка заметок */
 public class AsyncAdapter extends AsyncTask<ListAdapter, Void, Void> {
 
     @Override

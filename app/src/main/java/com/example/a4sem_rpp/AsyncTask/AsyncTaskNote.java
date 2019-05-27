@@ -10,6 +10,7 @@ import com.example.a4sem_rpp.notes.ListAdapter;
 
 import java.util.List;
 
+/** AsyncTask для выгрузки всех заметок в список */
 public class AsyncTaskNote extends AsyncTask<MenuActivity, Void, Void> {
 
     @Override

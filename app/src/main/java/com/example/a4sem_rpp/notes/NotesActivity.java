@@ -27,10 +27,11 @@ public class NotesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_notes);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         //для списка
         lists = (ArrayList<Notes>)getIntent().getExtras().getSerializable("list");
         list = (ListView)findViewById(R.id.notesListView);
-        ListAdapter adapter = new ListAdapter(this,lists);
+        ListAdapter adapter = new ListAdapter(this, lists);
         list.setAdapter(adapter);
 
         //обработка клика по активной кнопке
